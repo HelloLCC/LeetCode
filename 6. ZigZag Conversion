@@ -1,0 +1,26 @@
+class Solution {
+    public String convert(String s, int numRows) {
+        if (numRows == 1) return s;
+        int cycleNum = 2 * numRows - 2;
+        // 多少个一个循环
+        int cycle = s.length() / cycleNum;
+        StringBuilder sb = new StringBuilder();
+        for (int j = 0; j < numRows; j++) {
+            for (int i = 0; i <= cycle; i++) {
+                if (j == 0 || j == (numRows - 1)) {
+                    if ((i * cycleNum + j) < s.length()) {
+                        sb.append(s.charAt((i * cycleNum + j)));
+                    }
+                } else {
+                    if ((i * cycleNum + j) < s.length()) {
+                        sb.append(s.charAt((i * cycleNum + j)));
+                    }
+                    if ((i * cycleNum + cycleNum - j) < s.length()) {
+                        sb.append(s.charAt(i * cycleNum + cycleNum - j));
+                    }
+                }
+            }
+        }
+        return sb.toString();
+    }
+}
