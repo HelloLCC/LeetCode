@@ -1,0 +1,23 @@
+class Solution {
+    public String intToRoman(int num) {
+        if (num < 1 || num > 3999) return "";
+        String[][] str = new String[][]{
+                {"I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"},
+                {"X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"},
+                {"C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"},
+                {"M", "MM", "MMM"}
+        };
+        int carry = 0;
+        String res = "";
+        while (num != 0) {
+            int mod = num % 10;
+            if (mod != 0) {
+                String s = str[carry][mod - 1];
+                res = s + res;
+            }
+            num /= 10;
+            carry++;
+        }
+        return res;
+    }
+}
